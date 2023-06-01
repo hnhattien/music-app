@@ -12,11 +12,12 @@ on:
 jobs:
   build:
     runs-on: self-hosted
-
+    strategy:
+      matrix:
+        node-version: [14.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
       - uses: actions/checkout@v3
-        with:
-          node-version: "14.x"
       - name: Create .env for server
         run: |
           echo "DATABASE_URL=${{secrets.DATABASE_URL}}" >> music-app-server/.env
@@ -33,6 +34,10 @@ jobs:
           echo "REACT_APP_API_URL=${{secrets.REACT_APP_API_URL}}" >> music-app-client/.env
           echo "REACT_APP_CDN_IMAGE_URL=${{secrets.REACT_APP_CDN_IMAGE_URL}}" >> music-app-client/.env
           echo "REACT_APP_FACEBOOK_APP_ID=${{secrets.REACT_APP_FACEBOOK_APP_ID}}" >> music-app-client/.env
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
       - run: cd music-app-server
       - run: npm install
       - run: npm run build --if-present
