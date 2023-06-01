@@ -43,9 +43,9 @@ app.use(cookieParser());
 app.use(
   cookieSession({
     secret: `secretcode`,
-    sameSite: "none",
+    sameSite: false,
     maxAge: moment(new Date()).add(2, "day").toDate().getTime(),
-    secure: true,
+    secure: false,
     httpOnly: false,
     secureProxy: false,
   })
