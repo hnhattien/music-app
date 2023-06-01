@@ -45,7 +45,7 @@ app.use(
     secret: `secretcode`,
     sameSite: "none",
     maxAge: moment(new Date()).add(2, "day").toDate().getTime(),
-    secure: false,
+    secure: true,
     httpOnly: false,
     secureProxy: false,
   })
