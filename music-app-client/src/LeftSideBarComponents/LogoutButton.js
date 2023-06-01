@@ -8,13 +8,7 @@ export class LogoutButton extends Component {
   logoutUser = () => {
     this.props.toggleLoading(true);
     requester
-      .post("/auth/logout", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
+      .post("/auth/logout")
       .then((data) => {
         if (data.error) {
           this.props.showMessage(true, data.error.message, "danger", {
