@@ -47,6 +47,5 @@ jobs:
       - name: Setup Client
         working-directory: ./music-app-client
         run: |
-          npm cd ../music-app-client
           npm install
           npm run build --if-present
