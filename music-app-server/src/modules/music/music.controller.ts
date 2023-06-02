@@ -1,7 +1,7 @@
 import { ROLE } from "@core/authenticate/RoleData";
 import prismaClient from "@core/database/prismaClient";
 import { InputValidationError, UnAuthenticated } from "@core/types/ErrorTypes";
-import { User } from "@prisma/client";
+import { Likes, Music, Prisma, User } from "@prisma/client";
 import imagekitUtil from "@utils/imagekit.util";
 import uploadCareUtil from "@utils/uploadCare.util";
 import { NextFunction, Request, Response } from "express";
@@ -57,8 +57,27 @@ const getMusicByQuery = async (
   next: NextFunction
 ) => {
   try {
-    const musics = await prismaClient.music.findMany({});
-    res.send({ musics });
+    const user = req.user as Partial<User>;
+    if (user) {
+      const musics = await prismaClient.music.findMany({
+        include: {
+          likes: {
+            where: {
+              userid: user.id,
+            },
+          },
+        },
+      });
+      const musicWithLikes = musics.map((music) => {
+        if (music.likes.length) return Object.assign(music, { liked: true });
+        return Object.assign(music, { liked: false });
+      });
+
+      res.send({ musics: musicWithLikes });
+    } else {
+      const musics = await prismaClient.music.findMany({});
+      res.send({ musics });
+    }
   } catch (err) {
     next(err);
   }
@@ -173,7 +192,11 @@ const getMusicInfoBySlug = async (
           lyricTable: true,
         },
       });
-      res.send(musicInfo);
+      if (musicInfo?.likes.length) {
+        res.send(Object.assign(musicInfo, { liked: true }));
+      } else {
+        res.send(musicInfo);
+      }
     } else {
       const musicInfo = await prismaClient.music.findFirst({
         where: {
@@ -236,7 +259,7 @@ const postHeartActionToMusic = async (
             userid: toInteger(user.id),
           },
         });
-        res.send({ message: "Liked", isLike: false, music: affectedMusic });
+        res.send({ message: "Liked", isLike: true, music: affectedMusic });
       }
     } else {
       res.send({
