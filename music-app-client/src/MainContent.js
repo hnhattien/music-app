@@ -201,7 +201,7 @@ export class MainContent extends Component {
             path={"/profile"}
             auth={localStorage.getItem("userid") !== null}
           />
-          <Route
+          {/* <Route
             path="/upload"
             exact={true}
             render={(routeProps) => {
@@ -215,7 +215,7 @@ export class MainContent extends Component {
                 />
               );
             }}
-          />
+          /> */}
           <Route
             path="/newest"
             exact={true}

@@ -25,7 +25,6 @@ export class Profile extends Component {
     requester
       .get("/users/likedmusics")
       .then((musics) => {
-        console.log(musics);
         if (Array.isArray(musics)) {
           let musicSet = new Set(musics.map(JSON.stringify));
           let filteredData = Array.from(musicSet).map(JSON.parse); //Filter duplicated

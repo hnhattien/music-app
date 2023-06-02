@@ -55,8 +55,6 @@ export class AvatarCustomizePopup extends Component {
               base64Image: data,
             })
             .then((dataRes) => {
-              console.log(dataRes);
-              console.log(dataRes);
               if (dataRes.error) {
                 this.props.showMessage(
                   true,

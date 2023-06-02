@@ -81,7 +81,6 @@ export class NhacPhimMusicSlide extends Component {
       if (musics.error) {
         this.props.showMessage(true, musics.error.message, "danger");
       } else {
-        console.log(musics);
         this.setState({ data: musics });
       }
     } catch (err) {

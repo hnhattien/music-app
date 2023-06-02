@@ -14,7 +14,6 @@ export class AlbumTemplate extends Component {
     requester
       .get(`/song${slug}`)
       .then((dataRes) => {
-        console.log(dataRes);
         this.setState({ musics: dataRes });
         if (dataRes.length !== 0) {
           this.props.setPlaylist(dataRes);

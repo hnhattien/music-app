@@ -54,7 +54,7 @@ export class MusicInfoTemplate extends Component {
     requester
       .get(`${slug}`)
       .then((dataRes) => {
-        console.log(dataRes, "skldaksd;ksa;d;sad;ls;lda;l");
+        
         if (dataRes.error) {
           this.setState({
             error: dataRes.error.message,
@@ -201,11 +201,11 @@ export class MusicInfoTemplate extends Component {
                     onClick={(ev) => {
                       this.props.requestPlayMusicFromSlug(music.music_slug);
                     }}
-                    data-music-slug={music.music_slug}
+                    data-music-slug={music.music_slug || music.slug}
                     className="play-music-icon-overlay play-music"
                   >
                     <i
-                      data-music-slug={music.music_slug}
+                      data-music-slug={music.music_slug || music.slug}
                       className="fas fa-play-circle"
                     ></i>
                   </span>

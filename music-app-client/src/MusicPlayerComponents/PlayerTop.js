@@ -26,7 +26,9 @@ export class PlayerTop extends Component {
           </div>
           <div className="player-info-wrap mt-5">
             <h6 className="text-white song-name text-center">
-              <NavLink to={`/song/${currentMusic.music_slug}`}>
+              <NavLink
+                to={`/song/${currentMusic.music_slug || currentMusic.slug}`}
+              >
                 {currentMusic && music.title}
               </NavLink>
             </h6>

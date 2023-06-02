@@ -34,11 +34,17 @@ export class ExtraOptionButton extends Component {
     }
   };
   goToSong = (ev) => {
-    this.props.history.push(`/song/${this.props.getCurrentMusic().music_slug}`);
+    this.props.history.push(
+      `/song/${
+        this.props.getCurrentMusic().music_slug ||
+        this.props.getCurrentMusic().slug
+      }`
+    );
   };
   copyCurrentSongLink = (ev) => {
     let value = `${window.location.host}/song/${
-      this.props.getCurrentMusic().music_slug
+      this.props.getCurrentMusic().music_slug ||
+      this.props.getCurrentMusic().slug
     }`;
     navigator.clipboard
       .writeText(value)

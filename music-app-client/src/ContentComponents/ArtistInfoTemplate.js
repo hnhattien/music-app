@@ -28,7 +28,6 @@ export class ArtistInfoTemplate extends Component {
     requester
       .get(`${slug}`)
       .then((dataRes) => {
-        console.log(dataRes);
         if (dataRes.error) {
           this.setState({
             error: dataRes.error,

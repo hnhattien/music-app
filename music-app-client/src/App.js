@@ -128,12 +128,12 @@ export class App extends Component {
     return this.state.currentMusic;
   };
   requestPlayMusicFromSlug = (slug) => {
-    console.log(
-      this.state.playlist.filter((music) => music["music_slug"] === slug)
-    );
+    console.log(this.state.playlist.filter((music) => music["slug"] === slug));
+    console.log(slug);
     let musicFromPlaylist = this.state.playlist.filter(
-      (music) => music["music_slug"] === slug
+      (music) => music["slug"] === slug
     );
+    console.log(musicFromPlaylist);
     if (musicFromPlaylist.length <= 0) {
       requester
         .get(`/song/${slug}`)
@@ -460,7 +460,6 @@ export class App extends Component {
     });
   };
   render() {
-    console.log(this.state.playlist);
     let iconLeftSideBarClass = this.state.isShowSideBar
       ? "fa-chevron-left"
       : "fa-chevron-right";

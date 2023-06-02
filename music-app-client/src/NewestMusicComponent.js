@@ -16,7 +16,6 @@ export class NewestMusicComponent extends Component {
       if (dataRes.error) {
         this.props.showMessage(true, dataRes.error.message, "danger");
       } else {
-        console.log(dataRes);
         this.setState({ data: dataRes["musics"] });
         this.props.setPlaylist([...dataRes["musics"].reverse()]);
       }

@@ -82,13 +82,11 @@ export class BannerSlider extends Component {
     }
     toggleShowSlideBtn = (ev,decision) => {
         if(decision === "show"){
-            console.log(decision);
            this.setState({
                isShowSlideBtn: true
            })
         }
         else{
-            console.log(decision);
             this.setState({
                 isShowSlideBtn: false
             })

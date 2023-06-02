@@ -36,7 +36,6 @@ export class ChangePasswordPopup extends Component {
           repeatnewpassword: repeatnewpassword,
         })
         .then((dataRes) => {
-          console.log(dataRes);
           if (dataRes.error) {
             this.props.showMessage(
               true,
