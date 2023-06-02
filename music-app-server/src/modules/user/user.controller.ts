@@ -265,7 +265,7 @@ const resetPassword = async (
       to: [{ email: userInfo.email, name: "User" }],
       subject: "Reset Password",
       html:
-        `<h1>Reset Password For SE447-E Music App</h1>` +
+        `<h1>Reset Password For E Music App</h1>` +
         `<h1><a href='http://${req.hostname}/resetpassword?sel=${selector}&token=${token}'>Click here to reset password.</a></h1>`,
     });
     res.send({ message: "Check email for reset password." });

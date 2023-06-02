@@ -54,7 +54,6 @@ export class MusicInfoTemplate extends Component {
     requester
       .get(`${slug}`)
       .then((dataRes) => {
-        
         if (dataRes.error) {
           this.setState({
             error: dataRes.error.message,
@@ -175,7 +174,7 @@ export class MusicInfoTemplate extends Component {
     fileReader.readAsDataURL(blob);
     fileReader.onload = (ev) => {
       a.href = ev.target.result;
-      a.download = fileName + "SE447-Music-App.mp3";
+      a.download = fileName + "Music-App.mp3";
       a.click();
     };
   };

@@ -56,7 +56,7 @@ export class ArtistInfoTemplate extends Component {
     fileReader.readAsDataURL(blob);
     fileReader.onload = (ev) => {
       a.href = ev.target.result;
-      a.download = fileName + "SE447-Music-App.mp3";
+      a.download = fileName + "Music-App.mp3";
       a.click();
     };
   };
