@@ -7,7 +7,11 @@ const getAlbums = async (req: Request, res: Response, next: NextFunction) => {
     const albums = await albumService.getAlbums();
     res.send(albums);
   } catch (err) {
-    next(err);
+    res.send({
+      error: {
+        message: String(err),
+      },
+    });
   }
 };
 

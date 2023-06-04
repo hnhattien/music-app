@@ -48,7 +48,11 @@ const getMusicInfoById = async (
       res.send(musicInfo);
     }
   } catch (err) {
-    next(err);
+    res.send({
+      error: {
+        message: String(err),
+      },
+    });
   }
 };
 const getMusicByQuery = async (
@@ -79,7 +83,11 @@ const getMusicByQuery = async (
       res.send({ musics });
     }
   } catch (err) {
-    next(err);
+    res.send({
+      error: {
+        message: String(err),
+      },
+    });
   }
 };
 const searchMusic = async (req: Request, res: Response, next: NextFunction) => {
@@ -131,7 +139,11 @@ const searchMusic = async (req: Request, res: Response, next: NextFunction) => {
       res.send([]);
     }
   } catch (err) {
-    next(err);
+    res.send({
+      error: {
+        message: String(err),
+      },
+    });
   }
 };
 const updateView = async (req: Request, res: Response, next: NextFunction) => {
@@ -153,7 +165,11 @@ const updateView = async (req: Request, res: Response, next: NextFunction) => {
       res.send(new InputValidationError("Please give a music id"));
     }
   } catch (err) {
-    next(err);
+    res.send({
+      error: {
+        message: String(err),
+      },
+    });
   }
 };
 
@@ -218,7 +234,11 @@ const getMusicInfoBySlug = async (
     }
   } catch (err) {
     console.log(err);
-    next(err);
+    res.send({
+      error: {
+        message: String(err),
+      },
+    });
   }
 };
 
@@ -268,7 +288,11 @@ const postHeartActionToMusic = async (
       });
     }
   } catch (err) {
-    next(err);
+    res.send({
+      error: {
+        message: String(err),
+      },
+    });
   }
 };
 const uploadMusic = async (req: Request, res: Response, next: NextFunction) => {
@@ -325,7 +349,11 @@ const uploadMusic = async (req: Request, res: Response, next: NextFunction) => {
       });
     }
   } catch (err) {
-    next(err);
+    res.send({
+      error: {
+        message: String(err),
+      },
+    });
   }
 };
 
@@ -353,7 +381,11 @@ const getMusicsByCategorySlug = async (
       res.send({ error: { message: "Invalid input" } });
     }
   } catch (err) {
-    next(err);
+    res.send({
+      error: {
+        message: String(err),
+      },
+    });
   }
 };
 
@@ -390,7 +422,11 @@ const getMusicsByAlbumSlug = async (
       res.send({ error: { message: "Invalid input" } });
     }
   } catch (err) {
-    next(err);
+    res.send({
+      error: {
+        message: String(err),
+      },
+    });
   }
 };
 

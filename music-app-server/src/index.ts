@@ -59,36 +59,6 @@ app.get("/", (req, res) => {
 });
 routes(app);
 
-app.use(
-  (
-    error?: any,
-    req?: any,
-    res?: any,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    next?: any
-  ) => {
-    const { httpCode } = error;
-    const responsecodeStatus =
-      Number(httpCode) >= 100 && Number(httpCode) <= 599 ? httpCode : 500;
-
-    if (error instanceof ErrorBase) {
-      res.status(responsecodeStatus).json(error);
-    } else {
-      res
-        .status(responsecodeStatus)
-        .json(
-          new InternalServerError(
-            get(error, "message"),
-            null,
-            responsecodeStatus,
-            get(error, "type"),
-            get(error, "additionalProperties")
-          )
-        );
-    }
-  }
-);
-
 server.listen(3500, () => {
   console.log("listening on *:3500");
 });

@@ -5,7 +5,7 @@ const authRoutes = (app: Application) => {
   app.post("/auth/login", authController.login);
   app.post("/auth/signup", authController.signup);
   app.post("/auth/logout", authController.logout);
-  app.post("/auth/signup", authController.loginFacebook);
+  app.post("/auth/facebook", authController.loginFacebook);
   app.get("/auth/loginstatus", authController.checkLoginStatus);
 };
 

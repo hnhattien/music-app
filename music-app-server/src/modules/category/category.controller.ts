@@ -10,7 +10,11 @@ const getCategories = async (
     const categories = await prismaClient.category.findMany({});
     res.send(categories);
   } catch (err) {
-    next(err);
+    res.send({
+      error: {
+        message: String(err),
+      },
+    });
   }
 };
 

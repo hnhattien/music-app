@@ -48,21 +48,17 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
 
 const logout = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    req.logOut((err) => {
-      if (err) {
-        res.send({
-          error: {
-            message: String(err),
-          },
-        });
-      } else {
-        res.send({ message: "Logout success" });
-      }
-    });
+    // @ts-ignore: Unreachable code error
+    delete req.session;
+    delete req.user;
+    res
+      .clearCookie("session")
+      .clearCookie("session.sig	")
+      .send({ message: "Logout success" });
   } catch (err) {
     res.send({
       error: {
-        message: "Logout failed",
+        message: String(err),
       },
     });
   }

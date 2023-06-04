@@ -21,7 +21,11 @@ const getArtistForAdmin = async (
     const artists = await artistService.getArtistForAdmin();
     res.send(artists);
   } catch (err) {
-    next(err);
+    res.send({
+      error: {
+        message: String(err),
+      },
+    });
   }
 };
 
@@ -91,7 +95,11 @@ const getArtistAndMusicByArtistSlug = async (
       }
     }
   } catch (err) {
-    next(err);
+    res.send({
+      error: {
+        message: String(err),
+      },
+    });
   }
 };
 
